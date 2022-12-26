@@ -48,7 +48,9 @@ class GameFinishedFragment : Fragment() {
         _binding = null
     }
     private fun _parseArgs(){
-        _gameResult = requireArguments().getSerializable(KEY_GAME_RESULT) as GameResult
+        requireArguments().getParcelable<GameResult>(KEY_GAME_RESULT)?.let {
+            _gameResult = it
+        }
     }
     private fun _retryGame(){
         requireActivity().supportFragmentManager.popBackStack(
@@ -62,7 +64,7 @@ class GameFinishedFragment : Fragment() {
         fun newInstance(gameResult: GameResult) :GameFinishedFragment{
             return GameFinishedFragment().apply {
                 arguments = Bundle().apply {
-                    putSerializable(KEY_GAME_RESULT, gameResult)
+                    putParcelable(KEY_GAME_RESULT, gameResult)
                 }
             }
         }
