@@ -65,6 +65,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         _setGameSettings(level)
         _startTimer()
         _generateQuestion()
+        _updateProgress()
     }
     fun chooseAnswer(number: Int){
         _checkAnswers(number)
@@ -97,6 +98,9 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     }
     private fun _calculatePercentOfRightAnswers() :Int{
+        if (_countOfQuestions == 0) {
+            return 0
+        }
         return ((_countOfRightAnswers / _countOfQuestions.toDouble())*100).toInt()
     }
     private fun _setGameSettings(level: Level){
