@@ -37,7 +37,8 @@ class GameFinishedFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _setupOnClickListeners()
-        _bindViews()
+//        _bindViews()
+        binding.gameResult = args.gameResult
     }
     override fun onDestroyView() {
         super.onDestroyView()
@@ -54,42 +55,42 @@ class GameFinishedFragment : Fragment() {
 //        }
 //        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
-    private fun _bindViews(){
-        with(binding) {
-            emojiResult.setImageResource(_getSmileResId())
-            tvRequiredAnswers.text = String.format(
-                getString(R.string.required_score),
-                args.gameResult.gameSettings.minCountOfRightAnswers
-            )
-            tvScoreAnswers.text = String.format(
-                getString(R.string.score_answers),
-                args.gameResult.countOfRightAnswers
-            )
-            tvRequiredPercentage.text = String.format(
-                getString(R.string.required_percentage),
-                args.gameResult.gameSettings.minPercentOfRightAnswers
-            )
-            tvScorePercentage.text = String.format(
-                getString(R.string.score_percentage),
-                _getPercentOfRightAnswers()
-            )
-        }
-    }
-    private fun _getSmileResId(): Int{
-        return if (args.gameResult.winner) {
-            R.drawable.ic_happy
-        } else {
-            R.drawable.ic_sad
-        }
-    }
+//    private fun _bindViews(){
+//        with(binding) {
+//            emojiResult.setImageResource(_getSmileResId())
+////            tvRequiredAnswers.text = String.format(
+////                getString(R.string.required_score),
+////                args.gameResult.gameSettings.minCountOfRightAnswers
+////            )
+////            tvScoreAnswers.text = String.format(
+////                getString(R.string.score_answers),
+////                args.gameResult.countOfRightAnswers
+////            )
+////            tvRequiredPercentage.text = String.format(
+////                getString(R.string.required_percentage),
+////                args.gameResult.gameSettings.minPercentOfRightAnswers
+////            )
+////            tvScorePercentage.text = String.format(
+////                getString(R.string.score_percentage),
+////                _getPercentOfRightAnswers()
+////            )
+//        }
+//    }
+//    private fun _getSmileResId(): Int{
+//        return if (args.gameResult.winner) {
+//            R.drawable.ic_happy
+//        } else {
+//            R.drawable.ic_sad
+//        }
+//    }
 
-    private fun _getPercentOfRightAnswers() = with(args.gameResult) {
-        if (countOfQuestions == 0) {
-            0
-        } else {
-            ((countOfRightAnswers / countOfQuestions.toDouble()) * 100).toInt()
-        }
-    }
+//    private fun _getPercentOfRightAnswers() = with(args.gameResult) {
+//        if (countOfQuestions == 0) {
+//            0
+//        } else {
+//            ((countOfRightAnswers / countOfQuestions.toDouble()) * 100).toInt()
+//        }
+//    }
 //    private fun _parseArgs(){
 //        requireArguments().getParcelable<GameResult>(KEY_GAME_RESULT)?.let {
 //            _gameResult = it
